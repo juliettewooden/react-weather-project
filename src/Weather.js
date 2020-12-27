@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 
 
-export default function Weather() {
+export default function Weather(props) {
     let [weatherData, setWeatherData] = useState({ ready: false });
     function handleResponse(response) {
         console.log(response.data);
         setWeatherData({
             ready: true,
             temperature: response.data.main.temp,
+            icon: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
             wind: response.data.wind.speed,
             city: response.data.name,
             description: response.data.weather[0].description,
             humidity: response.data.main.humidity,
-            date: "Monday 09:00"
+            date: new Date(response.data.dt * 1000)
         });
     }
 
@@ -33,12 +35,14 @@ export default function Weather() {
             </form>
             <h1>{weatherData.city}</h1>
             <ul>
-                <li>{weatherData.date} </li>
+                <li>
+                <FormattedDate date={weatherData.date} />    
+                 </li>
                 <li className="text-capitalize">{weatherData.description} </li>
             </ul>
             <div className="row"> 
             <div className="col-6">
-                <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" alt="Cloudy" />
+                <img src={weatherData.icon} alt={weatherData.description} />
                 <div className="float-left">
                     <span className="temp">
                     {Math.round(weatherData.temperature)}
@@ -63,8 +67,7 @@ export default function Weather() {
     );
 } else{
     let apiKey = "2e65e506db0f4f57568714e0acc190bb";
-    let city = "Houston";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=imperial`;
 
 axios.get(url).then(handleResponse);
 return "Loading..."
