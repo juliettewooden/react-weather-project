@@ -12,11 +12,12 @@ export default function WeatherForecastPreview(props) {
         let temperature = Math.round(props.data.main.temp);
         return `${temperature}°F`;
     }
-
+    return (
 <div className="WeatherForecastPreview col">
    {hours()}
    {temperature()}
     ;
 </div>
+    );
 }
     
