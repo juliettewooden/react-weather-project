@@ -14,9 +14,9 @@ export default function WeatherForecastPreview(props) {
     }
     return (
 <div className="WeatherForecastPreview col">
-   {hours()}
-   {temperature()}
-    ;
+   <p>{hours()}</p>
+   <p>{temperature()}</p>
+    
 </div>
     );
 }

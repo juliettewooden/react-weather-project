@@ -4,6 +4,6 @@
 }
 
 .WeatherForecast canvas {
-  margin: 5px auto;
   display: block;
+  margin: 5px auto;
 }
