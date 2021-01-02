@@ -18,8 +18,7 @@ export default function WeatherInfo(props) {
                 <img src={props.data.icon} alt={props.data.description} />
                 <div className="float-left">
                     <WeatherUnits fahrenheit={props.data.temperature} />
-                    
-                </div>
+                    </div>
                 
                 
             </div>

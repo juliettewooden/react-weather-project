@@ -1,4 +1,6 @@
 import React from "react";
+import WeatherForecast from "./WeatherForecast";
+import WeatherInfo from "./WeatherInfo";
 
 export default function WeatherForecastPreview(props) {
 
@@ -20,4 +22,5 @@ export default function WeatherForecastPreview(props) {
 </div>
     );
 }
+
     
